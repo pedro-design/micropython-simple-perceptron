@@ -39,14 +39,14 @@ for i in range(100):#iterations
     for x in range(len(dataset)):
         #Dout1 = Dense1.predict(dataset[x])
         Dout1,hiden1p,hiden2p,Dout2  = model_foward(dataset,x)#use the model compute function
-        Dense1.apply_grad(dataset[x][0],[expexted[x][0]-hiden1p,expexted[x][0]-hiden2p])#input graddinets
+        Dense1.apply_grad(dataset[x][0],[expexted[x][0]-hiden1p,expexted[x][0]-hiden2p])#input gradients
         hiden1.apply_grad(Dout1[0],expexted[x][0]-Dout2)#this grad is for out 1 of input neuron 
-        hiden2.apply_grad(Dout1[1],expexted[x][0]-Dout2)#how works its taking the out 1 of the input layer and adapting for the next layer 
-        Dense2.apply_grad([hiden1p,hiden2p],expexted[x][0])
+        hiden2.apply_grad(Dout1[1],expexted[x][0]-Dout2)#how works: its taking the out 1 of the input layer and adapting for the next layer 
+        Dense2.apply_grad([hiden1p,hiden2p],expexted[x][0])#to use
      
     a = a+1
 #machine.freq(80000000) #--- use this for change cpu frec of the mcu for low power use the frecs of you board
-print("#")
+print("#")#train is over
 
 for x in range(len(dataset)):
         Dout1,hiden1p,hiden2p,Dout2 = model_foward(dataset,x)#call function and set value ops
