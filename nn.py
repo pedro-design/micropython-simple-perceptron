@@ -63,7 +63,7 @@ def derivate(p,t):#derivate
 
 
 #---------DEFINE NETWOTK GRAPH ----------
-
+#model arch is this 4 inputs, 2 hiden nodes,2 hiden nodes, 1 out
 class neural_network():
     def __init__ (self):
         self.N1 = initW(1)#neuron 1 ,layer 1 
