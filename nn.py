@@ -1,6 +1,12 @@
 import math 
 import random
-
+import gc
+gc.collect()
+total = gc.mem_alloc() + gc.mem_free()
+def free_mem():
+    print("------------------")
+    print(" {} mb used of {}".format(gc.mem_alloc()/8000,total/8000))
+         
 dataset=[[5.1,3.5,1.4,0.2],#I. setosa
          [4.9,3.0,1.4,0.2],
          [5.1,3.5,1.4 ,0.2],
@@ -120,6 +126,7 @@ for i in range(iterations):#train
             
         errls.append(sum(tmperrs))#get the sum of temp error list and add it to the error list
 print("#")
+free_mem()
 #-------evaluate-------
 for i in range(len(dataset)):#iterating over the dataset
     print("predicted: ",nn.foward(dataset[i]),"real: ",trueval[i])
