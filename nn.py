@@ -71,7 +71,7 @@ class neural_network():
         self.N3 = initW(1)#neuron 1 ,layer 2 
         self.N4 = initW(1)#neuron 2 ,layer 2
         self.Nout1 = initW(1)#neuron 1 ,layer 3
-        self.lr = 0.01# learning rate
+        self.lr = 0.01# learning rate if nan prediction, lower this value
     def foward(self,x):
         # connect layers using dot([prevlayer neurons act],current neuron) example:
         #self.neuron1act = dot([self.InputV[0],self.InputV[1]:: the first 2 inputs],self.N1::neuron 1 )
