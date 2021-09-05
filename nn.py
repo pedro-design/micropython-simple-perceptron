@@ -103,7 +103,7 @@ class neural_network():
         
 nn = neural_network()#define neural net 
 print(nn.foward(dataset[1]))#get a prediction from a random init net
-errls = []#error list for plotting
+errls1 = []#error list for plotting
 prrls = []#prediction list for plotting
 tmperrs = []#tmp error list
 end = False
@@ -124,7 +124,7 @@ for i in range(iterations):#train
                 end = True
                 break
             
-        errls.append(sum(tmperrs))#get the sum of temp error list and add it to the error list
+        errls1.append(sum(tmperrs))#get the sum of temp error list and add it to the error list
 print("#")
 free_mem()
 #-------evaluate-------
@@ -136,7 +136,7 @@ for i in range(len(dataset)):#iterating over the dataset
 #import matplotlib.pyplot as plt
 
 #print("last error ",sum(tmperrs))
-#plt.plot(errls)
+#plt.plot(errls1)
 #plt.show()
 #plt.plot(prrls)
 #plt.show()
