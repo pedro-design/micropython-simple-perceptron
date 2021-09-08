@@ -8,4 +8,4 @@ this lib includes the build blocks for creating neural nets using only micropyth
 - [X] add all the basic math functions
 - [ ] add more losses
 - [ ] add more activations functions
-- [ ] add a compiler for easy usage
+- [x] add a compiler for easy usage
