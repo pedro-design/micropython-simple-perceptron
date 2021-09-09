@@ -76,9 +76,9 @@ for i in range(len(dataset)):#iterating over the dataset
     
 #---------------plot data-------------------
 #optional section if not using in micropython
-import matplotlib.pyplot as plt
-plt.plot(errls13)
-plt.show()
+#import matplotlib.pyplot as plt
+#plt.plot(errls13)
+#plt.show()
 #plt.plot(prrls)
 #plt.show()
 
