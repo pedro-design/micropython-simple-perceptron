@@ -7,14 +7,21 @@ dataset=[[5.1,3.5,1.4,0.2],#I. setosa
          [5.1,3.5,1.4 ,0.2],
          [7.0,3.2,4.7,1.4],#I. versicolor
          [6.4,3.2,4.5,1.5],
-         [6.9,3.1,4.9,1.5]]
+         [6.9,3.1,4.9,1.5],
+         [6.8,3.0,5.5,2.1],#I. virginica
+         [5.7,2.5,5.0,2.0],
+         [5.8,2.8,5.1,2.4 ]]
+
 # mini iris dataset 
-trueval=[[0,1],#I. setosa
-         [0,1],
-         [0,1],
-         [1,0],#I. versicolor
-         [1,0],
-         [1,0]]
+trueval=[[0,1,0],#I. setosa
+         [0,1,0],
+         [0,1,0],
+         [1,0,0],#I. versicolor
+         [1,0,0],
+         [1,0,0],
+         [0,0,1],#I. virginica
+         [0,0,1],
+         [0,0,1]]
 
 
 
@@ -28,7 +35,7 @@ else :
     print('bad dataset')
 
         
-nn = neural_network(8,[4,4,3,3,3,2,2,2],0.15)#define neural net 
+nn = neural_network(5,[4,4,4,4,3],0.015,0.1)#define neural net 
 print(nn.foward(dataset[1]))#get a prediction from a random init net
 #for plotting:
 errls13 = []#error list for plotting
@@ -36,7 +43,7 @@ errls13 = []#error list for plotting
 #tmperrs = []#tmp error list
 ###################
 end = False
-iterations = 20
+iterations = 100
 c = 0
 
 for i in range(iterations):#train
@@ -53,7 +60,7 @@ for i in range(iterations):#train
         c = c+1
        # print(sum(tmperrs))
        #debug data :
-  #      errls13.append(sum(tmperrs1))#get the sum of temp error list and add it to the error list
+        errls13.append(sum(tmperrs1))#get the sum of temp error list and add it to the error list
         if sum(tmperrs1) > 90 or sum(tmperrs1) < 0.1  :#protection anti-nan
                 print("train is failing")
                 end = True
@@ -69,9 +76,9 @@ for i in range(len(dataset)):#iterating over the dataset
     
 #---------------plot data-------------------
 #optional section if not using in micropython
-# import matplotlib.pyplot as plt
-#plt.plot(errls13)
-#plt.show()
+import matplotlib.pyplot as plt
+plt.plot(errls13)
+plt.show()
 #plt.plot(prrls)
 #plt.show()
 
