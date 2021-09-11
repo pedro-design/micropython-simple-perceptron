@@ -1,33 +1,27 @@
 import math 
 import random
 import nn
-from nn import neural_network, error
-dataset=[[5.1,3.5,1.4,0.2],#I. setosa
-         [4.9,3.0,1.4,0.2],
-         [5.1,3.5,1.4 ,0.2],
-         [7.0,3.2,4.7,1.4],#I. versicolor
-         [6.4,3.2,4.5,1.5],
-         [6.9,3.1,4.9,1.5],
-         [6.8,3.0,5.5,2.1],#I. virginica
-         [5.7,2.5,5.0,2.0],
-         [5.8,2.8,5.1,2.4 ]]
-
-# mini iris dataset 
-trueval=[[0,1,0],#I. setosa
-         [0,1,0],
-         [0,1,0],
-         [1,0,0],#I. versicolor
-         [1,0,0],
-         [1,0,0],
-         [0,0,1],#I. virginica
-         [0,0,1],
-         [0,0,1]]
-
-
-
-
+from timeit import timeit
+from nn import neural_network, error,normalize
+#import machine
+#machine.freq(160000000)
+#dummy wheater  dataset
+dummy = [100,110]
+DdatasetX = []
+DdatasetY = [[100,110]]
+nsamples = 300
+for i in range(nsamples):
+    if random.getrandbits(2) == 1:
+        dummy=[dummy[0]+random.getrandbits(4)-random.getrandbits(4),dummy[1]+random.getrandbits(4)-random.getrandbits(4)]
+    else:
+        dummy=[dummy[0]-random.getrandbits(4)+random.getrandbits(4),dummy[1]-random.getrandbits(4)+random.getrandbits(4)]
+    DdatasetX.append(dummy)
+for i in range(1,len(DdatasetX)):
+    DdatasetY.append(DdatasetX[i])
+DdatasetY = normalize(DdatasetY)#normalize to 0-1 for prevent gradients exploding
+DdatasetX = normalize(DdatasetY)
 print('test dataset ',end='')# check if the dataset x and y have the same len
-if len(dataset) == len(trueval):
+if len(DdatasetX) == len(DdatasetY):
     print("ok")
     test1 = True 
 else :
@@ -35,50 +29,43 @@ else :
     print('bad dataset')
 
         
-nn = neural_network(5,[4,4,4,4,3],0.015,0.1)#define neural net 
-print(nn.foward(dataset[1]))#get a prediction from a random init net
+nn = neural_network(4,[2,2,2,2],0.00015,0.01)#define neural net smaller leraning rate more iter will take to end
+print(nn.foward(DdatasetX[1]))#get a prediction from a random init net
 #for plotting:
-errls13 = []#error list for plotting
+
 #prrls = []#prediction list for plotting
 #tmperrs = []#tmp error list
 ###################
 end = False
 iterations = 100
 c = 0
+errls13  =nn.train(DdatasetX,DdatasetY,10,stop=0.01)#usaje neural-net.train(X,Y,proggress print,stop value for loss)
 
-for i in range(iterations):#train
-    if test1 == True and end == False:
-        if c == int(iterations /30):#simple progress bar
-            print("-",end="")
-            c = 0
-        tmperrs1 = []#tmp error list
-        for w in range(len(dataset)):#pass over the dataset
-            nn.foward(dataset[w])#get predictions and update internal state
-            tmperrs1.append(sum(error(trueval[w],nn.foward(dataset[w]))))#get error of the nn and add to its list
-            nn.back(trueval[w])#back propagation
-           # print("-sd",error(trueval[w],nn.foward(dataset[w])))
-        c = c+1
-       # print(sum(tmperrs))
-       #debug data :
-        errls13.append(sum(tmperrs1))#get the sum of temp error list and add it to the error list
-        if sum(tmperrs1) > 90 or sum(tmperrs1) < 0.1  :#protection anti-nan
-                print("train is failing")
-                end = True
-                break
-            
-        
-print("#")
+#nn.save("iris")
+
 #-------evaluate-------
-print("last error ",sum(tmperrs1))
+future = []
 
-for i in range(len(dataset)):#iterating over the dataset
-    print("predicted: ",nn.foward(dataset[i]),"real: ",trueval[i])
-    
+
+for i in range(10):#iterating over the dataset
+    print("predicted: ",nn.foward(DdatasetX[i]),"real: ",DdatasetY[i])
+print("future test:")
+values=nn.foward(DdatasetX[29])
+value = [values[0],values[1]]
+for i in range(len(DdatasetX)):
+    values=nn.foward(value)
+    print("predicted step {}: ".format(i),value)
+    value = [values[0]+random.getrandbits(1)-random.getrandbits(1),values[1]+random.getrandbits(1)-random.getrandbits(1)]#add noise
+    future.append(value)
 #---------------plot data-------------------
 #optional section if not using in micropython
-#import matplotlib.pyplot as plt
-#plt.plot(errls13)
-#plt.show()
+import matplotlib.pyplot as plt
+plt.plot(errls13)
+plt.show()
+plt.plot(DdatasetY)
+plt.show()
+plt.plot(future)
+plt.show()
 #plt.plot(prrls)
 #plt.show()
 
