@@ -18,7 +18,10 @@ import math
 import random
 import nn
 from nn import neural_network, error,normalize,random_float
-
+#random_float produces a random float
+print(random_float)
+#normalize is a good tool for nn, its normalize data from 0 to 1
+print(normalize([0,1,2,3,4,5])
 nnEXAMPLE = neural_network(4,[6,6,6,3],0.15,0.01) #nlayers,[layers],lr,momentum
 nnEXAMPLE.train(X,Y,50,stop=0.01,lr_steps = 50)#x,y, callbacks , lr_Stop,lr_decay_steps
 nnEXAMPLE.save("tutorial1",save_train_val = True)
