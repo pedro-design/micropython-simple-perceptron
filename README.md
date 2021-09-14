@@ -24,7 +24,7 @@ print(random_float)
 print(normalize([[0,1,2,3,4,5],[6,7,8,9,10]]))
 nnEXAMPLE = neural_network(4,[6,6,6,3],0.15,0.01) #nlayers,[layers],lr,momentum
 nnEXAMPLE.train(X,Y,50,stop=0.01,lr_steps = 50)#x,y, callbacks , lr_Stop,lr_decay_steps
-nnEXAMPLE.save("tutorial1",save_train_val = True)
+nnEXAMPLE.save("tutorial1",save_train_val = True)#its saves as json
 nnEXAMPLE.foward(X[0])#predict values
 nn_loaded = neural_network(2,[2,2],0.015,0.0001)#build a holder nn
 nn_loaded.load("tutorial1")#load rebuilds the nn
