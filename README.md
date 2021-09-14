@@ -10,3 +10,4 @@ this lib includes the build blocks for creating neural nets using only micropyth
 - [X] train function and momemtum
 - [ ] add more activations functions
 - [x] add a compiler for easy usage
+- [x] added save and load
