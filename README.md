@@ -1,7 +1,7 @@
 # micropython-simple-perceptron
 simple lib for making perceptron in micropython
 this lib includes the build blocks for creating neural nets using only micropython libs
-# note : this lib uses a good amout of ram, it dont run on a esp8266 and its 86 kb of ram
+
 # to do next
 - [X] create the lib and see good results
 - [X] add squared loss
@@ -32,3 +32,5 @@ nn_loaded.load("tutorial1")#load rebuilds the nn
 nn_loaded.foward(X[0])#predict will be the same as the firstone
 ```
 if you want more layers at the input layers, the layers need to be the double of input data, or the number of values of the input data,if they are less layers,will cause undercoveraje
+
+note : this lib uses a good amout of ram, it dont run on a esp8266 and its 86 kb of ram
