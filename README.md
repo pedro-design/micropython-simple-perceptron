@@ -29,7 +29,7 @@ nnEXAMPLE.save("tutorial1",save_train_val = True)#its saves as json
 nnEXAMPLE.foward(X[0])#predict values
 nn_loaded = neural_network(2,[2,2],0.015,0.0001)#build a holder nn
 nn_loaded.load("tutorial1")#load rebuilds the nn
-nn_loaded.foward(X[0])#predict will be the same as the firstone
+nn_loaded.foward(X[0])#predict will be the same as the first one
 ```
 if you want more layers at the input layers, the layers need to be the double of input data, or the number of values of the input data,if they are less layers,will cause undercoveraje
 
