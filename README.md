@@ -1,6 +1,7 @@
 # micropython-simple-perceptron
 simple lib for making perceptron in micropython
 this lib includes the build blocks for creating neural nets using only micropython libs
+# note : this lib uses a good amout of ram, it dont run on a esp8266 and its 86 kb of ram
 # to do next
 - [X] create the lib and see good results
 - [X] add squared loss
