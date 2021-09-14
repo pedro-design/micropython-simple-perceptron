@@ -23,7 +23,7 @@ from nn import neural_network, error,normalize,random_float
 print(random_float)
 #normalize is a good tool for nn, its normalize data from 0 to 1
 print(normalize([[0,1,2,3,4,5],[6,7,8,9,10]]))
-nnEXAMPLE = neural_network(4,[6,6,6,3],0.15,0.01) #nlayers,[layers],lr,momentum
+nnEXAMPLE = neural_network(4,[6,6,6,3],0.15,0.01) #nlayers,[layers],lr,momentum(momentum is important to tune , if to high the model will not learn,if to low, it will get stuck at a local minima)
 nnEXAMPLE.train(X,Y,50,stop=0.01,lr_steps = 50)#x,y, callbacks , lr_Stop,lr_decay_steps
 nnEXAMPLE.save("tutorial1",save_train_val = True)#its saves as json
 nnEXAMPLE.foward(X[0])#predict values
