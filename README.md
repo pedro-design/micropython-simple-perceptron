@@ -1,9 +1,10 @@
 # micropython-simple-perceptron
 simple lib for making perceptron in micropython
 this lib includes the build blocks for creating neural nets using only micropython libs
+its train funtion is currently SGD + Momentum
 
 # to do next
-- [X] base function :SGD
+
 - [X] create the lib and see good results
 - [X] add squared loss
 - [X] add linear act
